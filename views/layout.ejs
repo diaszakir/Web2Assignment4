@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title || "My App" %></title>
+    <style>
+      .flash-msg {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .success {
+        background: #c8e6c9;
+        color: #2e7d32;
+      }
+      .error {
+        background: #ffcdd2;
+        color: #c62828;
+      }
+    </style>
+  </head>
+  <body>
+    <% if (success_msg.length > 0) { %> <% success_msg.forEach(msg => { %>
+    <div class="flash-msg success"><%= msg %></div>
+    <% }) %> <% } %> <% if (error_msg.length > 0) { %> <% error_msg.forEach(msg
+    => { %>
+    <div class="flash-msg error"><%= msg %></div>
+    <% }) %> <% } %> <%- body %>
+  </body>
+</html>
