@@ -1,0 +1,28 @@
+{
+  "name": "assignment4",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.10.0",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9"
+  }
+}
