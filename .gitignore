@@ -1,3 +1,5 @@
 models/
 
 .env
+
+node_modules/

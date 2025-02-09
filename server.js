@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const flash = require("connect-flash");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
+const path = require("path");
 require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 
