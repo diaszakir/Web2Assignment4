@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const flash = require("connect-flash");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const bcrypt = require("bcryptjs");
-const flash = require("connect-flash");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const path = require("path");
@@ -244,6 +244,41 @@ app.post("/reset-password/:token", async (req, res) => {
   res.redirect("/login");
 });
 
+app.post("/delete-account", async (req, res) => {
+  if (!req.session.user) {
+    req.flash("error_msg", "You need to be logged in to delete your account.");
+    return res.redirect("/login");
+  }
+
+  try {
+    // Проверяем существование пользователя перед удалением
+    const user = await User.findById(req.session.user._id);
+    if (!user) {
+      req.flash("error_msg", "User not found.");
+      return res.redirect("/");
+    }
+
+    // Удаляем пользователя
+    await User.deleteOne({ _id: req.session.user._id });
+
+    // Сохраняем flash сообщение до уничтожения сессии
+    req.flash("success_msg", "Your account has been deleted successfully.");
+
+    // Уничтожаем сессию и после этого делаем редирект
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Session destruction error:", err);
+        return res.redirect("/");
+      }
+      // После уничтожения сессии делаем редирект на главную
+      return res.redirect("/");
+    });
+  } catch (err) {
+    console.error("Account deletion error:", err);
+    req.flash("error_msg", "Error deleting account. Please try again.");
+    res.redirect("/");
+  }
+});
 // Запуск сервера
 
 app.listen(PORT, () =>

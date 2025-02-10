@@ -74,6 +74,22 @@
         background-color: #357abd;
         color: white;
       }
+
+      .delete-btn {
+        background-color: #e74c3c;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 1rem;
+      }
+
+      .delete-btn:hover {
+        background-color: #c0392b;
+      }
     </style>
   </head>
   <body>
@@ -89,6 +105,10 @@
 
       <div class="nav-links">
         <% if (user) { %>
+        <form action="/delete-account" method="POST" style="margin-top: 1rem">
+          <button type="submit" class="delete-btn">Delete Account</button>
+        </form>
+        <% } %> <% if (user) { %>
         <a href="/logout" class="logout-btn">Log out</a>
         <% } else { %>
         <a href="/login">Log in</a>
