@@ -197,7 +197,7 @@ app.post("/forgot-password", async (req, res) => {
     to: user.email,
     from: process.env.EMAIL,
     subject: "Reset Password",
-    text: `Click the link to reset your password: http://localhost:${PORT}/reset-password/${token}`,
+    text: `Click the link to reset your password: http://web2assignment4.onrender.com/reset-password/${token}`,
   };
 
   await transporter.sendMail(mailOptions);
